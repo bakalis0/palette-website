@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palette - AI-Powered Travel Planning & Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 18px 35px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #4f46e5;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-item {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .problem-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .problem-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .solution-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .solution-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .step p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Market Section */
+        .market {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+            color: white;
+        }
+
+        .market-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+
+        .comparison-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-large {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Founder Section */
+        .founder {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .founder-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .founder-image {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
+            border-radius: 50%;
+            margin: 0 auto 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
+        }
+
+        .founder-bio {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        /* Join Team Section */
+        .join-team {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .join-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .join-description {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Contact Form */
+        .contact {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #f8fafc;
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-form {
+                padding: 2rem;
+                margin: 0 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Additional styling for better visual hierarchy */
+        .highlight {
+            background: linear-gradient(120deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Palette</div>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="#founder">Founder</a></li>
+                <li><a href="#join">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>AI-Powered Travel Planning<br>Meets Smart Booking</h1>
+                <p class="hero-subtitle">The future of travel is here. Book flights, hotels & experiences while earning rewards for every review. Our AI learns your preferences to craft perfect trips, every time.</p>
+                <div class="cta-buttons">
+                    <a href="#join" class="btn btn-primary">Join the Revolution</a>
+                    <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title reveal">Travel Planning Shouldn't Be This Hard</h2>
+            <div class="problem-grid">
+                <div class="problem-item reveal">
+                    <span class="problem-icon">🧩</span>
+                    <h3>Fragmented Booking</h3>
+                    <p>Travelers juggle 5+ different apps for flights, hotels, restaurants, and activities - no single platform does it all</p>
+                </div>
+                <div class="problem-item reveal">
+                    <span class="problem-icon">🤖</span>
+                    <h3>Generic Recommendations</h3>
+                    <p>Current platforms give everyone the same suggestions without learning your unique travel style and preferences</p>
+                </div>
+                <div class="problem-item reveal">
+                    <span class="problem-icon">📝</span>
+                    <h3>No Rewards for Reviews</h3>
+                    <p>You share valuable travel experiences and reviews that help millions of travelers, but get nothing in return</p>
+                </div>
+                <div class="problem-item reveal">
+                    <span class="problem-icon">⏰</span>
+                    <h3>Time-Consuming Planning</h3>
+                    <p>Hours spent researching, comparing, and planning trips that could be done in minutes with smart AI assistance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2 class="section-title">One Platform. Complete Travel.<br><span class="highlight">Powered by AI.</span></h2>
+            <div class="solution-grid">
+                <div class="solution-card reveal">
+                    <span class="solution-icon">✈️</span>
+                    <h3>All-in-One Booking</h3>
+                    <p>Book flights, hotels, restaurants, activities, and experiences all in one seamless platform. Like Booking.com, but for your entire trip.</p>
+                </div>
+                <div class="solution-card reveal">
+                    <span class="solution-icon">🧠</span>
+                    <h3>AI Trip Planning</h3>
+                    <p>Our AI learns from your booking history, reviews, and preferences to create personalized itineraries that match your exact travel style.</p>
+                </div>
+                <div class="solution-card reveal">
+                    <span class="solution-icon">🎮</span>
+                    <h3>Gamified Rewards</h3>
+                    <p>Earn points for every booking and review. Unlock exclusive deals, VIP perks, and travel credits that make every trip more rewarding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title reveal">How Palette Works</h2>
+            <div class="steps-container">
+                <div class="step reveal">
+                    <div class="step-number">1</div>
+                    <h3>Tell Us Your Style</h3>
+                    <p>Share your travel preferences, budget, and interests. Our AI starts learning what makes the perfect trip for you.</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">2</div>
+                    <h3>AI Plans Your Trip</h3>
+                    <p>Get personalized itineraries with flights, hotels, restaurants, and activities - all optimized for your taste and budget.</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">3</div>
+                    <h3>Book Everything</h3>
+                    <p>Book your entire trip in one platform. No switching between apps or websites. Everything is seamlessly integrated.</p>
+                </div>
+                <div class="step reveal">
+                    <div class="step-number">4</div>
+                    <h3>Earn & Share</h3>
+                    <p>Review your experiences to earn points and help the AI get smarter. Unlock better deals and exclusive perks for future trips.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section class="market" id="market">
+        <div class="container">
+            <h2 class="section-title">Revolutionizing a <span class="highlight">$700B Market</span></h2>
+            <div class="market-comparison">
+                <div class="comparison-card reveal">
+                    <h3 class="comparison-title">Traditional Travel Booking</h3>
+                    <span class="stat-large">5+</span>
+                    <p>Different apps needed for complete trip planning</p>
+                    <br>
+                    <p>✗ Generic recommendations<br>✗ No learning from preferences<br>✗ Fragmented experience<br>✗ No rewards for reviews</p>
+                </div>
+                <div class="comparison-card reveal">
+                    <h3 class="comparison-title">Palette Platform</h3>
+                    <span class="stat-large">1</span>
+                    <p>Platform for all your travel booking and planning needs</p>
+                    <br>
+                    <p>✓ AI-powered personalization<br>✓ Learns your preferences<br>✓ Complete booking integration<br>✓ Gamified reward system</p>
+                </div>
+                <div class="comparison-card reveal">
+                    <h3 class="comparison-title">Market Opportunity</h3>
+                    <span class="stat-large">$700B</span>
+                    <p>Global travel market ready for AI disruption</p>
+                    <br>
+                    <p>• 1.4B international travelers annually<br>• Growing demand for personalized experiences<br>• AI travel market growing 15% yearly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder" id="founder">
+        <div class="container">
+            <div class="founder-content reveal">
+                <h2 class="section-title">Ready to Disrupt Travel</h2>
+                <div class="founder-image">👤</div>
+                <p class="founder-bio">
+                    Here's what I discovered: The average traveler visits 12+ websites before booking a single trip, writes reviews worth millions to companies, and receives nothing in return for this valuable data.
+                </p>
+                <p style="color: #64748b; font-size: 1.2rem; line-height: 1.7; margin-top: 1.5rem;">
+                    That's a broken system waiting to be fixed.
+                </p>
+                <p style="color: #64748b; font-size: 1.1rem; line-height: 1.7; margin-top: 1.5rem;">
+                    I'm building Palette to create a fair exchange – your travel preferences and reviews power an AI that gets better at serving you, while you earn real rewards for every interaction. It's travel planning that actually values your input.
+                </p>
+                <div style="margin-top: 2rem; padding: 2rem; background: rgba(79, 70, 229, 0.1); border-radius: 15px; border-left: 4px solid #4f46e5;">
+                    <p style="color: #4f46e5; font-weight: 600; margin-bottom: 1rem;">The Data Advantage:</p>
+                    <p style="color: #64748b; font-size: 1rem; line-height: 1.6;">
+                        While big platforms extract value from your data without giving back, Palette creates a true partnership. Every review you write, every preference you share, every trip you book makes the AI smarter at serving YOU. It's the future of fair, personalized travel.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Team Section -->
+    <section class="join-team" id="join">
+        <div class="container">
+            <div class="join-content reveal">
+                <h2 class="section-title">Seeking Technical Co-Founder</h2>
+                <p class="join-description">
+                    Join us in building the future of travel. We're looking for a technical co-founder passionate about AI, 
+                    travel technology, and creating seamless user experiences. Help us combine smart booking, AI trip planning, 
+                    and gamified rewards into one revolutionary platform.
+                </p>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>🚀 Core Development</h4>
+                        <div class="skill-list">
+                            • Mobile App Development<br>
+                            • Backend API Systems<br>
+                            • Cloud Infrastructure<br>
+                            • Database Architecture
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>🤖 AI & Machine Learning</h4>
+                        <div class="skill-list">
+                            • Recommendation Systems<br>
+                            • Natural Language Processing<br>
+                            • Preference Learning<br>
+                            • Predictive Analytics
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>🔗 Travel Integration</h4>
+                        <div class="skill-list">
+                            • Booking API Integration<br>
+                            • Payment Processing<br>
+                            • Travel Data Systems<br>
+                            • Third-party Partnerships
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 1.2rem;">
+                    <strong>What We Offer:</strong> Co-founder equity, chance to disrupt a $700B industry, 
+                    and the opportunity to build the platform that defines the future of AI-powered travel.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Join the Travel Revolution</h2>
+            <form class="contact-form reveal">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+                <div class="form-group">
+                    <label for="role">Interest Level *</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select your interest...</option>
+                        <option value="cofounder">Technical Co-Founder</option>
+                        <option value="developer">Senior Developer</option>
+                        <option value="advisor">Technical Advisor</option>
+                        <option value="investor">Potential Investor</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="background">Technical Background</label>
+                    <input type="text" id="background" name="background" placeholder="e.g., AI/ML Engineer, Full-Stack Developer, Travel Tech Specialist">
+                </div>
+                <div class="form-group">
+                    <label for="interest">Why are you interested in revolutionizing travel with AI?</label>
+                    <textarea id="interest" name="interest" placeholder="Tell us about your passion for travel technology, AI, and building the future of trip planning..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem;">Join the Revolution</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Palette. Building the future of AI-powered travel planning and booking.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        // Call reveal on scroll and page load
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+        reveal();
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const role = formData.get('role');
+            
+            // Show success message
+            alert(`Thanks ${name}! We're excited about your interest as a ${role}. We'll be in touch within 24 hours to discuss this revolutionary opportunity.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Header background change on scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(79, 70, 229, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
