@@ -12,10 +12,11 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0a0a0f;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a1f;
             color: #ffffff;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* Header */
@@ -24,13 +25,13 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 31, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #2a2a33;
         }
 
         nav {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 1.5rem 2rem;
             display: flex;
@@ -39,24 +40,26 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #a78bfa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: #a0a0b0;
             text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
@@ -68,67 +71,47 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 50%, rgba(240, 147, 251, 0.2) 100%),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23667eea;stop-opacity:0.3"/><stop offset="100%" style="stop-color:%23764ba2;stop-opacity:0.3"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23grad1)"/><circle cx="200" cy="200" r="150" fill="rgba(240,147,251,0.2)"/><circle cx="1000" cy="600" r="200" fill="rgba(102,126,234,0.2)"/></svg>');
-            background-size: cover;
-            background-position: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, #1a1a1f 0%, #232329 100%);
         }
 
         .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
+            max-width: 900px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #d0d0d0 100%);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: #b0b0c0;
             margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         .cta-group {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
             text-decoration: none;
             transition: all 0.3s;
             cursor: pointer;
@@ -138,229 +121,267 @@
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            color: #b0b0c0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Split Features Section */
-        .split-features {
+        /* Features Section */
+        .features {
             padding: 8rem 2rem;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .feature-row {
+        .feature-item {
+            margin-bottom: 8rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 6rem;
+            gap: 6rem;
             align-items: center;
         }
 
-        .feature-content h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .feature-item:nth-child(even) {
+            direction: rtl;
         }
 
-        .feature-content p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
+        .feature-item:nth-child(even) > * {
+            direction: ltr;
         }
 
-        .feature-image {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(240, 147, 251, 0.2));
-            border-radius: 30px;
-            padding: 3rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-        }
-
-        /* Cards Section */
-        .cards-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, #0a0a0f 0%, #1a0a2e 100%);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 4rem;
-            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .cards-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1));
-            border-radius: 25px;
-            padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(102, 126, 234, 0.5);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-        }
-
-        .card-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .card h3 {
-            font-size: 1.8rem;
+        .feature-text h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #667eea 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        .feature-text p {
+            font-size: 1.1rem;
+            color: #b0b0c0;
+            line-height: 1.8;
+        }
+
+        .feature-visual {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(167, 139, 250, 0.1));
+            border-radius: 20px;
+            padding: 4rem;
+            text-align: center;
+            font-size: 6rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-visual:hover {
+            transform: scale(1.02);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 8rem 2rem;
+            background: #232329;
+            border-top: 1px solid #2a2a33;
+            border-bottom: 1px solid #2a2a33;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            color: #b0b0c0;
             font-size: 1.1rem;
         }
 
-        /* Stats Section */
-        .stats-section {
+        .steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            gap: 4rem;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: #b0b0c0;
+            font-size: 1.05rem;
+        }
+
+        /* Stats */
+        .stats {
             padding: 6rem 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .stats-grid {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             text-align: center;
         }
 
-        .stat-item h3 {
-            font-size: 4rem;
-            font-weight: 900;
+        .stat h3 {
+            font-size: 3rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        .stat-item p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        .stat p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
         }
 
-        /* Co-Founder Section */
-        .cofounder-section {
+        /* Join Section */
+        .join {
             padding: 8rem 2rem;
-            background: #0a0a0f;
+            background: #1a1a1f;
         }
 
-        .cofounder-content {
-            max-width: 1000px;
+        .join-content {
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .cofounder-content h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .join-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .join-content p {
+            font-size: 1.1rem;
+            color: #b0b0c0;
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .cofounder-content p {
-            font-size: 1.3rem;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3rem;
         }
 
-        .skills-list {
+        .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.8rem;
             justify-content: center;
-            margin: 3rem 0;
+            margin: 2rem 0 3rem;
         }
 
-        .skill-tag {
-            background: rgba(102, 126, 234, 0.2);
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            font-size: 1rem;
+        .skill {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            font-size: 0.9rem;
+            color: #b0b0c0;
+            transition: all 0.3s;
+        }
+
+        .skill:hover {
+            background: rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
         }
 
         /* Footer */
         footer {
-            background: #000;
+            background: #232329;
             padding: 3rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid #2a2a33;
+            color: #808090;
+            font-size: 0.9rem;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .feature-row {
+            .feature-item {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-item:nth-child(even) {
+                direction: ltr;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 3rem;
+            .step {
+                grid-template-columns: 1fr;
+            }
+
+            .step-number {
+                font-size: 2rem;
+            }
+
+            .feature-visual {
+                font-size: 4rem;
+                padding: 2rem;
             }
         }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .feature-image {
-            animation: float 6s ease-in-out infinite;
-        }
-
+        /* Subtle animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
         }
 
         .fade-in.visible {
@@ -370,121 +391,119 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <div class="logo">Palette</div>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#join">Join Us</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#join">Join</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Book Trips,<br>Discover Restaurants,<br>Earn Rewards</h1>
             <p class="hero-subtitle">The AI-powered platform that turns every travel booking and dining experience into points, perks, and personalized recommendations.</p>
             <div class="cta-group">
                 <a href="#join" class="btn btn-primary">Join the Revolution</a>
-                <a href="#features" class="btn btn-secondary">Explore Features</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
     </section>
 
-    <!-- Split Features -->
-    <section class="split-features" id="features">
-        <div class="feature-row fade-in">
-            <div class="feature-content">
+    <section class="features" id="features">
+        <div class="feature-item fade-in">
+            <div class="feature-text">
                 <h2>Travel Smarter</h2>
                 <p>Book flights, hotels, and experiences all in one place. Our AI learns your preferences and crafts perfect itineraries tailored to your travel style.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
             </div>
-            <div class="feature-image">✈️</div>
+            <div class="feature-visual">✈️</div>
         </div>
 
-        <div class="feature-row fade-in">
-            <div class="feature-image">🍽️</div>
-            <div class="feature-content">
+        <div class="feature-item fade-in">
+            <div class="feature-text">
                 <h2>Dine Better</h2>
                 <p>Discover restaurants, bars, and cafés that match your taste. Get personalized recommendations powered by AI that understands what you love.</p>
-                <a href="#" class="btn btn-primary">Explore Dining</a>
             </div>
+            <div class="feature-visual">🍽️</div>
         </div>
 
-        <div class="feature-row fade-in">
-            <div class="feature-content">
+        <div class="feature-item fade-in">
+            <div class="feature-text">
                 <h2>Get Rewarded</h2>
                 <p>Every booking, review, and check-in earns you points. Unlock exclusive deals, VIP perks, and travel credits that make every experience more valuable.</p>
-                <a href="#" class="btn btn-primary">See Rewards</a>
             </div>
-            <div class="feature-image">🎁</div>
+            <div class="feature-visual">🎁</div>
         </div>
     </section>
 
-    <!-- Cards Section -->
-    <section class="cards-section" id="how-it-works">
-        <h2 class="section-title">How Palette Works</h2>
-        <div class="cards-grid">
-            <div class="card fade-in">
-                <div class="card-icon">🤖</div>
-                <h3>AI Learns You</h3>
-                <p>Share your preferences once. Our AI remembers what you love and gets smarter with every interaction.</p>
+    <section class="how-it-works" id="how">
+        <div class="section-header">
+            <h2>How Palette Works</h2>
+            <p>Three simple steps to transform your travel experience</p>
+        </div>
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>AI Learns You</h3>
+                    <p>Share your preferences once. Our AI remembers what you love and gets smarter with every interaction.</p>
+                </div>
             </div>
-            <div class="card fade-in">
-                <div class="card-icon">🔍</div>
-                <h3>Discover & Book</h3>
-                <p>Get personalized recommendations for flights, hotels, restaurants, and activities. Book everything in one platform.</p>
+            <div class="step fade-in">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Discover & Book</h3>
+                    <p>Get personalized recommendations for flights, hotels, restaurants, and activities. Book everything in one platform.</p>
+                </div>
             </div>
-            <div class="card fade-in">
-                <div class="card-icon">⭐</div>
-                <h3>Review & Earn</h3>
-                <p>Share your experiences and earn points for every review. Your input makes the AI smarter and earns you rewards.</p>
+            <div class="step fade-in">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Review & Earn</h3>
+                    <p>Share your experiences and earn points for every review. Your input makes the AI smarter and earns you rewards.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="stats">
         <div class="stats-grid">
-            <div class="stat-item">
+            <div class="stat">
                 <h3>$700B</h3>
-                <p>Travel Market Opportunity</p>
+                <p>Travel Market</p>
             </div>
-            <div class="stat-item">
+            <div class="stat">
                 <h3>5+</h3>
-                <p>Apps You Currently Need</p>
+                <p>Apps Replaced</p>
             </div>
-            <div class="stat-item">
+            <div class="stat">
                 <h3>1</h3>
-                <p>Platform That Does It All</p>
+                <p>Simple Platform</p>
             </div>
-            <div class="stat-item">
+            <div class="stat">
                 <h3>100%</h3>
-                <p>Personalized For You</p>
+                <p>Personalized</p>
             </div>
         </div>
     </section>
 
-    <!-- Co-Founder Section -->
-    <section class="cofounder-section" id="join">
-        <div class="cofounder-content fade-in">
+    <section class="join" id="join">
+        <div class="join-content fade-in">
             <h2>Join Our Founding Team</h2>
             <p>We're building the future of travel and dining experiences. Looking for a technical co-founder passionate about AI, mobile development, and creating products that millions will love.</p>
             
-            <div class="skills-list">
-                <span class="skill-tag">Mobile Development</span>
-                <span class="skill-tag">AI & Machine Learning</span>
-                <span class="skill-tag">API Integration</span>
-                <span class="skill-tag">Full-Stack Development</span>
-                <span class="skill-tag">Product Thinking</span>
+            <div class="skills">
+                <span class="skill">Mobile Development</span>
+                <span class="skill">AI & Machine Learning</span>
+                <span class="skill">API Integration</span>
+                <span class="skill">Full-Stack</span>
+                <span class="skill">Product Thinking</span>
             </div>
 
-            <p style="margin-top: 2rem;">Here's what I discovered: Travelers visit 12+ websites before booking a single trip and write reviews worth millions to companies that give nothing back. That's a broken system waiting to be fixed.</p>
-            
-            <p>I'm building Palette to create a fair exchange – your preferences and reviews power an AI that gets better at serving you, while you earn real rewards for every interaction.</p>
+            <p>Travelers visit 12+ websites before booking a single trip and write reviews worth millions to companies that give nothing back. I'm building Palette to create a fair exchange – your preferences and reviews power an AI that gets better at serving you, while you earn real rewards for every interaction.</p>
 
             <div style="margin-top: 3rem;">
                 <a href="mailto:johnbakalis0@gmail.com" class="btn btn-primary">Get In Touch</a>
@@ -492,13 +511,11 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Palette. Building the future of travel and dining experiences.</p>
+        <p>© 2025 Palette. Building the future of travel and dining experiences.</p>
     </footer>
 
     <script>
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -509,13 +526,12 @@
             });
         });
 
-        // Fade in on scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const fadeInOnScroll = () => {
             fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+                const elementVisible = 100;
                 
                 if (elementTop < window.innerHeight - elementVisible) {
                     element.classList.add('visible');
